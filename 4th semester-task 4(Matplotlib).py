@@ -2,9 +2,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-# =========================================================================
-# 1. Графические команды
-# =========================================================================
+""" task 1: graphical commands """
 fig1 = plt.figure()
 # Точка на линии (y = 0.5x + 0.5, при x=0 -> y=0.5)
 plt.scatter(0.0, 0.5, color='red', zorder=5, label='Point on line')
@@ -19,10 +17,7 @@ plt.legend()
 plt.grid(True)
 plt.title("1. Графические команды (Задания выполнены)")
 
-
-# =========================================================================
-# 2. Диаграммы
-# =========================================================================
+""" task 2: diagrams """
 s2 = ['one','two','three','four','five','six','seven']
 x2 = [1, 2, 3, 4, 5, 6, 7]
 z2_rand = np.random.random(200) 
@@ -59,10 +54,7 @@ plt.errorbar(x2, z1_2, xerr=1, yerr=0.5, fmt='o', capsize=5)
 plt.title('2. Simple error bar chart (extended)')
 plt.grid(True)
 
-
-# =========================================================================
-# 3. Методы изолиний (pcolor, imshow)
-# =========================================================================
+""" task 3: pcolor, imshow """
 x3 = np.linspace(-3, 3, 20)
 y3 = np.linspace(-3, 3, 20)
 X3, Y3 = np.meshgrid(x3, y3)
@@ -78,10 +70,7 @@ me = plt.imshow(dat3, cmap='plasma', origin='lower')
 plt.colorbar(me)
 plt.title('3. Advanced imshow plot')
 
-
-# =========================================================================
-# 4. Методы отображений (contour, contourf, matshow)
-# =========================================================================
+""" task 4: contour, contourf, matshow """
 x4 = np.linspace(-2, 2, 30)
 y4 = np.linspace(-2, 2, 15)
 X4, Y4 = np.meshgrid(x4, y4)
@@ -98,16 +87,11 @@ plt.colorbar(cf)
 plt.title('4. Advanced contourf plot')
 
 plt.figure()
-# Для matshow передаем номер текущей фигуры, чтобы colorbar привязался к ней
 cf_mat = plt.matshow(dat4, cmap='Spectral', fignum=plt.gcf().number) 
 plt.colorbar(cf_mat, shrink=0.7)
 plt.title('4. Advanced matshow plot')
 
-
-# =========================================================================
-# 5. Методы заливки (Зеркальное отражение)
-# =========================================================================
-# ИСПРАВЛЕНЫ синтаксические ошибки оригинала (добавлены *)
+""" task 5: Filling method """ 
 x5 = np.arange(0, 4 * np.pi + 0.1, 0.1)
 y5 = np.sin(x5)
 z5 = np.sin(2 * x5)
@@ -130,10 +114,7 @@ plt.fill_between(x5_2, -y5_2, -z5_2, color='purple', alpha=0.5)
 plt.title('5. Mirrored fill_between (across X-axis)')
 plt.grid(True)
 
-
-# =========================================================================
-# 6. Векторные диаграммы
-# =========================================================================
+""" task 6: vector diagram """
 # ИСПРАВЛЕНЫ синтаксические ошибки оригинала (добавлены *)
 x6 = np.arange(-2 * np.pi, 2 * np.pi, 0.1)
 u6 = np.sin(x6)*np.cos(x6)
@@ -156,8 +137,5 @@ plt.quiver(x1_6, y1_6, color='green')
 plt.title('6. Simple quiver plot')
 plt.grid(True)
 
-
-# =========================================================================
-# Отображение всех графиков
-# =========================================================================
+# UNLEASHHHHHH
 plt.show()
