@@ -1,0 +1,77 @@
+import numpy as np
+import math 
+
+""" 
+with open('file.txt', 'r', encoding='utf-8') as file:
+    data = file.read()
+    print(data) 
+"""
+
+data = np.array([[2, 1, 3, 4],
+                 [-1, 2, 0, 5],
+                 [3, -2, -1, 2],
+                 [0, 1.5, 4, -3]])
+
+# 1. расчет расстояния от каждой точки до (0,0)
+R = [] # расстояние
+V = [] # скорость
+for i in range(4):
+    R.append((data[i][0]**2+data[i][1]**2)**0.5)
+    V.append((data[i][2]**2+data[i][3]**2)**0.5)
+
+print(f"Distances: {R}, velocities: {V}")
+
+# 2. определение max расстояния и скорости
+R_max = max(R)
+V_max = max(V)
+
+print(f"Max distance: {R_max}, max velocity: {V_max}")
+
+# 3. определение T
+T = []
+for j in V:
+    T.append((j**2)/2)
+
+print(f"Kinetic energies: {T}")
+
+# 4. среднее значение
+av = []
+for k in range(4):
+    av.append(sum(data[k])/4)
+
+av = np.array(av)
+
+print(f"Average parameters: {av}")
+
+# 5. нормализация
+st_deviation = []
+for l in range(4):
+    bruh = 0
+    for m in range(4):
+        bruh += (data[l][m])**2
+    st_deviation.append((bruh/(3))**0.5)
+
+st_deviation = np.array(st_deviation)
+
+A_n = []
+for n in range(4):
+    A_n.append((data[n] - int(av[n]))/st_deviation[n])
+
+print(f"A_n: {A_n}")
+
+# 6. матрица поворота
+
+tetta = math.pi/4
+rotation_m = np.array([[math.cos(tetta), -1*math.sin(tetta)],
+                       [math.sin(tetta), math.cos(tetta)]])
+
+coord_vector1 = np.array([2,1]).T
+coord_vector2 = np.array([-1,2]).T
+coord_vector3 = np.array([3,-2]).T
+coord_vector4 = np.array([0,1.5]).T
+
+# nice try, but even after rotation matrice affection abs of distance vector still be invariant
+
+new_vec = coord_vector1*rotation_m
+
+print(f"Distance is inv: {np.linalg.norm(new_vec) == np.linalg.norm(coord_vector1)}")
